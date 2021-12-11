@@ -1,5 +1,5 @@
 class SingleObj {
-    static instance;
+    static instance: unknown;
 
     count = 0;
     constructor() {
@@ -23,7 +23,7 @@ function FNSingle() {
 }
 
 FNSingle.getInstance = (function () {
-    let instance;
+    let instance: unknown;
     return () => {
         if (!instance) {
             instance = new FNSingle();
