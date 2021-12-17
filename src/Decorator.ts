@@ -1,7 +1,9 @@
 
 
 function classDecorator<T>(target: T): T {
+    // @ts-ignore
     if (target && target.count !== undefined){
+        // @ts-ignore
         target.count = 3;
     }
     return target;

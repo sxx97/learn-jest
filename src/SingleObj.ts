@@ -1,5 +1,5 @@
 class SingleObj {
-    static instance: unknown;
+    static instance: SingleObj;
 
     count = 0;
     constructor() {
@@ -19,13 +19,15 @@ class SingleObj {
 }
 
 function FNSingle() {
+    // @ts-ignore
     this.count = 0;
 }
 
 FNSingle.getInstance = (function () {
-    let instance: unknown;
+    let instance: any;
     return () => {
         if (!instance) {
+            // @ts-ignore
             instance = new FNSingle();
         }
         return instance;

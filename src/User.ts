@@ -19,7 +19,7 @@ class User {
 class UserFactory extends User{
     works: string[];
 
-    constructor(name, age, career, workType: WORK_TYPE) {
+    constructor(name: string, age: number, career: string, workType: WORK_TYPE) {
         super(name, age, career);
         switch(workType) {
             case WORK_TYPE.CODER:
