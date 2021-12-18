@@ -49,7 +49,7 @@ class Stack {
         if(this.isEmpty()) {
             return '';
         }
-        return Object.values(this.items).toString();
+        return JSON.stringify(Object.values(this.items));
     }
 
 }
