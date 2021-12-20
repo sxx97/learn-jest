@@ -65,27 +65,36 @@ class Deque extends Queue {
     }
 
     addFront(item: any) {
+        const isArr = Array.isArray(item);
         if(this.isEmpty()) {
             this.addBack(item);
         } else if(this.lowestCount > 0) {
-            this.lowestCount--;
-            this.items[this.lowestCount] = item;
-        } else {
-            let count = 0;
-            if (Array.isArray(item)) {
+            if (isArr) {
                 item.forEach((val: any) => {
-                    this.items[this.count + count] = this.items[this.count - 1];
-                    this.items[count] = val;
-                    count++;
-                    this.count++;
+                    this.lowestCount--;
+                    this.items[this.lowestCount] = val;
                 })
                 return ;
             }
-            this.items[this.count + count] = this.items[this.count - 1];
-            this.items[count] = item;
-            this.count += count;
+            this.lowestCount--;
+            this.items[this.lowestCount] = item;
+        } else {
+            let count = isArr ? item.length : 1;
+            for (let i = this.count; i > 0; i--) {
+                this.items[i + count - 1] = this.items[i - 1];
+            }
+            if (isArr) {
+                this.count += count;
+                this.lowestCount = 0;
+                item.forEach((val, index) => {
+                    this.items[index] = val;
+                })
+                return ;
+            }
+            this.count++;
+            this.lowestCount = 0;
+            this.items[0] = item;
         }
-
     }
 
     addBack(item: any) {
@@ -98,11 +107,11 @@ class Deque extends Queue {
         }
         const item = this.items[this.count - 1];
         delete this.items[this.count - 1];
-        this.lowestCount--;
+        this.count--;
         return item;
     }
 
-    removeFornt() {
+    removeFront() {
         return this.dequeue()
     }
 
