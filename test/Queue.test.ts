@@ -80,7 +80,6 @@ describe('Deque test', () => {
             }
             return result;
         }
-
         expect(palindromeChecker('level')).toBeTruthy()
     })
 })
