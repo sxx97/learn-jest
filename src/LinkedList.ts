@@ -9,6 +9,15 @@ class LinkedNode {
     }
 }
 
+class DoubleLinkedNode  extends LinkedNode {
+    prev: DoubleLinkedNode | undefined;
+
+    constructor(element: unknown) {
+        super(element);
+        this.prev = undefined;
+    }
+}
+
 type baseType = number | string;
 type referenceType = {[str: string]: unknown} | any[] | Map<any, any> | Set<unknown> | Function;
 
@@ -170,8 +179,17 @@ class LinkedList {
     }
 }
 
+class DoubleLinkedList extends LinkedList {
+
+    constructor() {
+        super();
+    }
+
+}
+
 
 export {
     LinkedList,
-    LinkedNode
+    LinkedNode,
+    DoubleLinkedList,
 }
