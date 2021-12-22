@@ -117,7 +117,7 @@ class LinkedList {
     getElementAt(index: number): LinkedNode | undefined {
         let loopCount = 0,
             currentNode = this.head;
-        while(currentNode && currentNode.next && loopCount > index) {
+        while(currentNode && currentNode.next && loopCount < index) {
             currentNode = currentNode.next;
             loopCount++;
         }
@@ -161,11 +161,11 @@ class LinkedList {
         if (currentNode === null) {
             return '';
         }
-        strArr.push(currentNode?.element);
         while(currentNode?.next) {
             strArr.push(currentNode.element);
             currentNode = currentNode.next;
         }
+        strArr.push(currentNode?.element);
         return strArr.join(',');
     }
 }
